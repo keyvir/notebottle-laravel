@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Middleware\Cors;
 
 
-Class ApiController 
+Class ApiController extends Controller 
 {
+	public function __construct()
+	{
+		$this->middleware(Cors::class);
+	}
+
 	public function login(Request $request )
 	
 	{

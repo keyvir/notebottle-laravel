@@ -21,27 +21,27 @@ class PageController extends Controller
         return $pageHandler->get($id);
     }
 
-    public function getList()
+    public function getList(PageHandler $pageHandler)
     {
         return $pageHandler->getList();
     }
 
-    public function getMyList()
+    public function getMyList(PageHandler $pageHandler)
     {
         return $pageHandler->getMyList();
     }
 
-    public function store(Request $request)
+    public function store(PageHandler $pageHandler,Request $request)
     {
         return $pageHandler->store($request->only('content'));
     }
 
-    public function update(Page $page, Request $request)
+    public function update(PageHandler $pageHandler, Page $page, Request $request)
     {
         return $pageHandler->update($page, $request->all());
     }
 
-    public function remove(Page $page)
+    public function remove(PageHandler $pageHandler, Page $page)
     {
         return $pageHandler->remove($page);
     }

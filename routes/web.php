@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::post('login','ApiController@login');
+Route::post('register','ApiController@register');

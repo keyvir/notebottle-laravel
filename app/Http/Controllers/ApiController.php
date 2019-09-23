@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Middleware\Cors;
+use App\UserHandler;
 
 
 Class ApiController extends Controller 
@@ -25,5 +26,19 @@ Class ApiController extends Controller
 		}else{
 			abort(402,'failed');
 		}
+	}
+
+	public function register(Request $request, UserHandler $handler)
+	{
+		$request->validate([
+			'id'=>'required|unique:users',
+			'password'=>'required'
+		]);
+		$id = $request->get('id');
+		$pw = $request->get('password');
+
+		$user = $handler->register($id,$pw);
+
+		return $user->api_token;
 	}
 }

@@ -19,10 +19,10 @@ Route::post('login','ApiController@login');
 Route::post('register','ApiController@register');
 
 Route::prefix('page')->group(function(){
-    Route::get('{id}','PageController@get');
     Route::get('list','PageController@getList');
     Route::get('my-list','PageController@getMyList');
     Route::post('store','PageController@store');
     Route::post('update/{page}','PageController@update');
     Route::get('remove/{page}','PageController@remove');
+    Route::get('{id}','PageController@get');
 });

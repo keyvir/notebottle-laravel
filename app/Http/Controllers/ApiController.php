@@ -36,8 +36,9 @@ Class ApiController extends Controller
 		]);
 		$id = $request->get('id');
 		$pw = $request->get('password');
+		$name = $request->get('name');
 
-		$user = $handler->register($id,$pw);
+		$user = $handler->register($id, $pw, $name);
 
 		return $user->api_token;
 	}

@@ -20,7 +20,7 @@ class PageHandler
     public function getMyList()
     {
         $query = $this->getQuery();
-        $query->where('user_id',Auth::guard('api')->id());
+        $query = $query->where('user_id',Auth::guard('api')->id());
         return $query->get();
     }
 

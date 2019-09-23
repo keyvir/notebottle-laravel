@@ -12,7 +12,7 @@ class UserHandler
             'name'=>$name
 		]);
 		$user->save();
-		$user->api_token = hash('sha256',$user->id.$user->password);
+		$user->api_token = hash('sha256',$user->id.'-'.$user->password);
 		$user->save();
 		return $user;
     }

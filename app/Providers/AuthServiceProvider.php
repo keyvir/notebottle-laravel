@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        
+        Auth::viaRequest('custom-token', function ($request) {
+            return User::where('api_token', $request->token)->first();
+        });
         //
     }
 }

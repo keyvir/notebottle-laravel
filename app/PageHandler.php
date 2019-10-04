@@ -8,20 +8,20 @@ class PageHandler
 {
     public function get($id)
     {
-        return Page::find($id);
+        return Page::find($id)->load('tags');
     }
 
     public function getList()
     {
         $query = $this->getQuery();
-        return $query->get();
+        return $query->get()->load('tags');
     }
 
     public function getMyList()
     {
         $query = $this->getQuery();
         $query = $query->where('user_id',Auth::guard('api')->id());
-        return $query->get();
+        return $query->get()->load('tags');
     }
 
     public function store($args)

@@ -22,14 +22,14 @@ class PageController extends Controller
         return $pageHandler->get($id);
     }
 
-    public function getList(PageHandler $pageHandler)
+    public function getList(PageHandler $pageHandler, Request $request)
     {
-        return $pageHandler->getList();
+        return $pageHandler->getList($request->all());
     }
 
-    public function getMyList(PageHandler $pageHandler)
+    public function getMyList(PageHandler $pageHandler, Request $request)
     {
-        return $pageHandler->getMyList();
+        return $pageHandler->getMyList($request->all());
     }
 
     public function store(PageHandler $pageHandler, TagHandler $tagHandler, Request $request)

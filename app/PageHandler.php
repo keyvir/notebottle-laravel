@@ -11,16 +11,27 @@ class PageHandler
         return Page::find($id)->load('tags');
     }
 
-    public function getList()
+    public function getList($args= [])
     {
         $query = $this->getQuery();
+        
+        $query = $query->when(isset($args['tag']),function($query)use($args){
+            $query->whereHas('tags',function($query)use($args){
+                $query->where('name','like','%'.$args['tag'].'%');
+            });
+        });
         return $query->get()->load('tags');
     }
 
-    public function getMyList()
+    public function getMyList($args= [])
     {
         $query = $this->getQuery();
         $query = $query->where('user_id',Auth::guard('api')->id());
+        $query = $query->when(isset($args['tag']),function($query)use($args){
+            $query->whereHas('tags',function($query)use($args){
+                $query->where('name','like','%'.$args['tag'].'%');
+            });
+        });
         return $query->get()->load('tags');
     }
 

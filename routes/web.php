@@ -26,3 +26,7 @@ Route::prefix('page')->group(function(){
     Route::get('remove/{page}','PageController@remove');
     Route::get('{id}','PageController@get');
 });
+
+Route::prefix('tag')->group(function(){
+    Route::get('list','TagController@getList');
+});

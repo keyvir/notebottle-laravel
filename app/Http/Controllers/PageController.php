@@ -56,4 +56,24 @@ class PageController extends Controller
         return $pageHandler->remove($page);
     }
 
+    public function search(Request $request)
+    {
+        $tag = $request->get('tag');
+        $keyword = $request->get('keyword');
+        $pages = Page::when($tag,function($query)use($tag){
+            $query->whereHas('tags',function($query)use($tag){
+                $query->where('name',$tag);
+            });
+        })->when($keyword,function($query)use($keyword){
+            $query->where(function($query)use($keyword){
+                $query->whereHas('tags',function($query)use($keyword){
+                    $query->where('name','like','%'.$keyword.'%');
+                });
+            })->orWhere(function($query)use($keyword){
+                $query->where('content','like','%'.$keyword.'%');
+            });
+        })->with('tags')->get();
+        return $pages;
+    }
+
 }

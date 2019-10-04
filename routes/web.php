@@ -30,3 +30,4 @@ Route::prefix('page')->group(function(){
 Route::prefix('tag')->group(function(){
     Route::get('list','TagController@getList');
 });
+Route::get('search','PageController@search');

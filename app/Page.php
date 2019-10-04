@@ -17,4 +17,9 @@ class Page extends Model
     {
         return \Carbon\Carbon::parse($value)->locale('ko')->diffForHumans();
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

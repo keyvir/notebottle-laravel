@@ -31,14 +31,23 @@ class PageController extends Controller
         return $pageHandler->getMyList();
     }
 
-    public function store(PageHandler $pageHandler,Request $request)
+    public function store(PageHandler $pageHandler, TagHandler $tagHandler, Request $request)
     {
-        return $pageHandler->store($request->only('content'));
+        $page = $pageHandler->store($request->only('content'));
+        if($request->has('tags')){
+            $tagHandler->store($page->id,$request->only('tags'));
+        }
+        return 'complete';
+
     }
 
-    public function update(PageHandler $pageHandler, Page $page, Request $request)
+    public function update(PageHandler $pageHandler, TagHandler $tagHandler, Page $page, Request $request)
     {
-        return $pageHandler->update($page, $request->all());
+        $pageHandler->update($page, $request->only(['content']));
+        if($request->has('tags')){
+            $tagHandler->store($page->id,$request->only('tags'));
+        }
+        return 'complete';
     }
 
     public function remove(PageHandler $pageHandler, Page $page)

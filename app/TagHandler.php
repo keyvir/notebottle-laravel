@@ -14,7 +14,7 @@ class TagHandler
         foreach($titles as $title)
         {
             $tag = Tag::firstOrCreate([
-                'title'=>$title
+                'name'=>$title
             ]);
             $tag->pages()->attach([$pageId]);
         }

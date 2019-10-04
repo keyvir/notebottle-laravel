@@ -36,7 +36,7 @@ class PageController extends Controller
     {
         $page = $pageHandler->store($request->only('content'));
         if($request->has('tags')){
-            $tagHandler->store($page->id,$request->only('tags'));
+            $tagHandler->store($page->id,$request->get('tags'));
         }
         return 'complete';
 

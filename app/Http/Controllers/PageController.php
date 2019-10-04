@@ -7,6 +7,7 @@ use App\User;
 use App\Page;
 use App\PageHandler;
 use App\UserHandler;
+use App\TagHandler;
 use App\Http\Middleware\Cors;
 
 class PageController extends Controller 

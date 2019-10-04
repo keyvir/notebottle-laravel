@@ -16,7 +16,7 @@ class TagHandler
             $tag = Tag::firstOrCreate([
                 'title'=>$title
             ]);
-            $tag->pages()->attach($pageId);
+            $tag->pages()->attach([$pageId]);
         }
     }
 }

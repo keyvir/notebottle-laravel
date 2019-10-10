@@ -16,7 +16,7 @@ class CORS
             'Access-Control-Allow-Headers'=> 'Content-Type, X-Auth-Token, Origin'
         ];
         if($request->getMethod() == "OPTIONS") {
-            return Response::make('OK', 200, $headers);
+            return response()->make('OK', 200, $headers);
         }
         
 

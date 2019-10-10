@@ -15,14 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('login','ApiController@login');
-Route::post('register','ApiController@register');
+Route::match(['post','options'],'login','ApiController@login');
+Route::match(['post','options'],'register','ApiController@register');
 
 Route::prefix('page')->group(function(){
     Route::get('list','PageController@getList');
     Route::get('my-list','PageController@getMyList');
-    Route::post('store','PageController@store');
-    Route::post('update/{page}','PageController@update');
+    Route::match(['post','options'],'store','PageController@store');
+    Route::match(['post','options'],'update/{page}','PageController@update');
     Route::get('remove/{page}','PageController@remove');
     Route::get('{id}','PageController@get');
 });

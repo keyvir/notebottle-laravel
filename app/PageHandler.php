@@ -20,6 +20,12 @@ class PageHandler
                 $query->where('name','like','%'.$args['tag'].'%');
             });
         });
+        $query = $query->when(isset($args['count']),function($query)use($args){
+            $query->when(isset($args['offset']),function($query)use($args){
+                $query->skip($args['offset']);
+            });
+            $query->limit($args['count']);
+        });
         return $query->get()->load('tags');
     }
 

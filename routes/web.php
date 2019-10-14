@@ -19,7 +19,7 @@ Route::match(['post','options'],'login','ApiController@login');
 Route::match(['post','options'],'register','ApiController@register');
 
 Route::prefix('page')->group(function(){
-    Route::get('list','PageController@getList');
+    Route::match(['get','options'],'list','PageController@getList');
     Route::get('my-list','PageController@getMyList');
     Route::match(['post','options'],'store','PageController@store');
     Route::match(['post','options'],'update/{page}','PageController@update');
